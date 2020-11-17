@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        findViewById(R.id.btn_googleSignIn).setOnClickListener(this);
+        findViewById(R.id.btn_googleButton).setOnClickListener(this);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_googleSignIn:
+            case R.id.btn_googleButton:
                 signIn();
                 break;
             // ...
