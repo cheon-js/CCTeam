@@ -1,6 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/home_layout"
+        android:layout_width="match_parent"
+        android:layout_height="672dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/main_text"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_above="@+id/line"
+            android:gravity="center_horizontal"
+            android:text="메인화면"
+            android:textSize="30sp" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:id="@+id/Flayout"
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:layout_above="@+id/slayout"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#fff"
+                android:scaleType="fitXY"
+                android:src="@drawable/notice" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#fff"
+                android:scaleType="fitXY"
+                android:src="@drawable/freeboard" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/slayout"
+            android:layout_width="match_parent"
+            android:layout_height="154dp"
+            android:layout_above="@+id/tlayout"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#fff"
+                android:scaleType="fitXY"
+                android:src="@drawable/qna" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#fff"
+                android:scaleType="fitXY"
+                android:src="@drawable/deal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tlayout"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_above="@+id/flayout"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#fff"
+                android:scaleType="fitXY"
+                android:src="@drawable/popular" />
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#fff"
+                android:scaleType="fitXY"
+                android:src="@drawable/intro" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/flayout"
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#fff"
+                android:scaleType="fitXY"
+                android:src="@drawable/write" />
+
+            <ImageButton
+                android:id="@+id/imageButton8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="#fff"
+                android:scaleType="fitXY"
+                android:src="@drawable/comment" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
