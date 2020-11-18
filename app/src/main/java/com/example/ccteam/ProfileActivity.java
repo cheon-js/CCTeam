@@ -16,6 +16,7 @@ public class ProfileActivity extends AppCompatActivity {
     public static final String GOOGLE_ACCOUNT = "google_account";
     TextView name, mail;
     Button gocontinue, logout;
+    String email, gname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
