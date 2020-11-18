@@ -25,13 +25,14 @@ public class FreeboardWriteActivity extends AppCompatActivity {
         title = findViewById(R.id.board_title);
         content = findViewById(R.id.board_content);
 
-        input_title = title.getText().toString();
-        input_content = content.getText().toString();
+        title.getText().toString();
+        content.getText().toString();
 
         input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myRef.setValue(title);
+                myRef.child("test").push().setValue(title.getText().toString());
+                myRef.child("test").push().setValue(content.getText().toString());
             }
         });
         }
