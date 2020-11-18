@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            updateUI(account);
+            updateUI(null);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     }
 
     private void updateUI(GoogleSignInAccount account) {
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+        intent.putExtra(ProfileActivity.GOOGLE_ACCOUNT, account);
+
+        startActivityForResult(intent,1001);
+        finish();
     }
 
     @Override
