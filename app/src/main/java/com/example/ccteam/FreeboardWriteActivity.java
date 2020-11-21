@@ -1,5 +1,6 @@
 package com.example.ccteam;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,8 @@ public class FreeboardWriteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 myRef.child("test").push().setValue(title.getText().toString());
                 myRef.child("test").push().setValue(content.getText().toString());
+                Intent intent = new Intent(getApplicationContext(),boardList.class);
+                startActivity(intent);
             }
         });
         }
