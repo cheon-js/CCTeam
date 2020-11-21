@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".boardList"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +21,9 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".FreeboardWriteActivity" />
+        <activity android:name=".boardList"/>
+        <activity android:name=".ChatActivity"/>
+        <activity android:name=".ChatProfile"/>
     </application>
 
 </manifest>

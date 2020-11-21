@@ -18,6 +18,7 @@ public class ProfileActivity extends AppCompatActivity {
     Button gocontinue, logout;
     String email, gname;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
