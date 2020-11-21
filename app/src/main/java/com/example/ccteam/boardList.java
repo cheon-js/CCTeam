@@ -1,15 +1,15 @@
 package com.example.ccteam;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +30,7 @@ public class boardList extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     List<Object> Array = new ArrayList<Object>();
 
-
+    Button writebtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,15 @@ public class boardList extends AppCompatActivity {
             }
         });
 
+        //작성버튼 누르면 게시글 올리는 곳으로 이동.
+        writebtn = findViewById(R.id.button3);
+        writebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),FreeboardWriteActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
     private void initDatabase() {

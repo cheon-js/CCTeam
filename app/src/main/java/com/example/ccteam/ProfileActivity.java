@@ -27,7 +27,6 @@ public class ProfileActivity extends AppCompatActivity {
         logout = findViewById(R.id.log_out);
         name = findViewById(R.id.profile_text);
         mail = findViewById(R.id.profile_email);
-
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount != null){
             name.setText(signInAccount.getDisplayName());

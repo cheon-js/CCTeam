@@ -8,19 +8,18 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
-    ImageButton freeboard;
+    ImageButton boardList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
 
-        freeboard = findViewById(R.id.imageButton2);
+        boardList = findViewById(R.id.imageButton2);
 
-
-        freeboard.setOnClickListener(new View.OnClickListener() {
+        boardList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),FreeboardWriteActivity.class);
+                Intent intent = new Intent(getApplicationContext(),boardList.class);
                 startActivity(intent);
             }
         });
