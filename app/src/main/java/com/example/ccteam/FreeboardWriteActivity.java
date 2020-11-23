@@ -30,6 +30,7 @@ public class FreeboardWriteActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("boardnum");
+        DatabaseReference listboard = database.getReference("boardlist");
         DatabaseReference user = database.getReference("User");
 
         input = findViewById(R.id.input_button);
@@ -39,13 +40,14 @@ public class FreeboardWriteActivity extends AppCompatActivity {
         title.getText().toString();
         content.getText().toString();
 
+        String boradId = "Board_" + System.currentTimeMillis();
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myRef.child("User").child("email").setValue(signInAccount.getEmail().toString());
-                myRef.child("User").child("Title").setValue(title.getText().toString());
-
+                listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                listboard.child(boradId).child("Title").setValue(title.getText().toString());
+                listboard.child(boradId).child("Content").setValue(content.getText().toString());
                 //키값 없는 게시글 데이터베이스 입력 push();
 
                 Intent intent = new Intent(getApplicationContext(),boardList.class);
