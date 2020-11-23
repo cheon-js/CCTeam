@@ -79,8 +79,8 @@ public class boardList extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance();
 
-        mReference = mDatabase.getReference("log");
-        mReference.child("log").setValue("check");
+        mReference = mDatabase.getReference("test");
+        mReference.child("test1").setValue("jax");
 
         mChild = new ChildEventListener() {
 
