@@ -43,7 +43,7 @@ public class ChatProfile extends AppCompatActivity {
         ivProfile = findViewById(R.id.iv_profile);
         button = findViewById(R.id.chatbutt);
 
-        if(G.nickName!=null){
+        if(G.nickName!=null){//ㅋㅋ 아 귀찮게 하노 진짜
             etName.setText(G.nickName);
             Picasso.get().load(G.porfileUrl).into(ivProfile);
 
