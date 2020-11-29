@@ -43,7 +43,8 @@ public class ChatProfile extends AppCompatActivity {
         ivProfile = findViewById(R.id.iv_profile);
         button = findViewById(R.id.chatbutt);
 
-        if(G.nickName!=null){//ㅋㅋ 아 귀찮게 하노 진짜
+        loadData();
+        if(G.nickName!=null){
             etName.setText(G.nickName);
             Picasso.get().load(G.porfileUrl).into(ivProfile);
 
@@ -100,11 +101,6 @@ public class ChatProfile extends AppCompatActivity {
                 break;
         }
     }
-    public void clickBtn(View view) {
-
-        //바꾼것도 없고, 처음 접속도 아니고..
-
-    }
     void saveData() {
         G.nickName= etName.getText().toString();
 
@@ -144,13 +140,13 @@ public class ChatProfile extends AppCompatActivity {
                         profileRef.child(G.nickName).setValue(G.porfileUrl);
 
                         //2. 내 phone에 nickName, profileUrl을 저장
-                        SharedPreferences preferences= getSharedPreferences("account",MODE_PRIVATE);
+                        /*SharedPreferences preferences= getSharedPreferences("account",MODE_PRIVATE);
                         SharedPreferences.Editor editor=preferences.edit();
 
                         editor.putString("nickName",G.nickName);
                         editor.putString("profileUrl", G.porfileUrl);
 
-                        editor.commit();
+                        editor.commit();*/
                         //저장이 완료되었으니 ChatActivity로 전환
                         Intent intent= new Intent(getApplicationContext(),ChatActivity.class);
                         startActivity(intent);
@@ -160,5 +156,12 @@ public class ChatProfile extends AppCompatActivity {
                 });
             }
         });
+    }
+    void loadData(){
+        SharedPreferences preferences=getSharedPreferences("account",MODE_PRIVATE);
+        G.nickName=preferences.getString("nickName", null);
+        G.porfileUrl=preferences.getString("profileUrl", null);
+
+
     }
 }
