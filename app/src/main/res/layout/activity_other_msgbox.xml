@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
-        android:textColor="#333333"
+        android:textColor="@color/white"
         android:layout_toRightOf="@+id/iv"
         android:layout_marginLeft="16dp"/>
 
