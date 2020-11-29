@@ -10,18 +10,28 @@ import androidx.appcompat.app.AppCompatActivity;
 public class HomeActivity extends AppCompatActivity {
     ImageButton boardList;
     ImageButton chat;
+    ImageButton carpool;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
 
         boardList = findViewById(R.id.imageButton2);
+        carpool = findViewById(R.id.imageButton5);
         chat = findViewById(R.id.imageButton6);
 
         boardList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),boardList.class);
+                startActivity(intent);
+            }
+        });
+
+        carpool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),CarpoolboardActivity.class);
                 startActivity(intent);
             }
         });

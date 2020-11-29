@@ -3,6 +3,8 @@
     package="com.example.ccteam">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -11,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDu6gDITryV3WUozc8O5vjw0greMBLA7YM"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +30,8 @@
         <activity android:name=".boardList"/>
         <activity android:name=".ChatActivity"/>
         <activity android:name=".ChatProfile"/>
+        <activity android:name=".CarpoolboardActivity"/>
+        <activity android:name=".CarpoolMapActivity"/>
     </application>
 
 </manifest>

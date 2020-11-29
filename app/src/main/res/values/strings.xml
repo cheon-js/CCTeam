@@ -7,4 +7,7 @@
     <string name="sign_in">Sign in</string>
     <string name="facebook_app_id">526498191468722</string>
     <string name="fb_login_protocol_scheme">fb526498191468722</string>
+    <string name="Carpool">카풀 게시판</string>
+    <string name="carpool_map">지도 보기</string>
+    <string name="carpool_input">카풀 등록</string>
 </resources>
