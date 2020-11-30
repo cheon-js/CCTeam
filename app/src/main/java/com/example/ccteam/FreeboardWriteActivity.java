@@ -56,11 +56,3 @@ public class FreeboardWriteActivity extends AppCompatActivity {
         });
         }
     }
-/*class test
-                {
-                    String a;
-                    String b;
-                }
-                test te = new test();
-                te.a = "sdfsdf";
-                te.b = "ASfsdafl";*/
