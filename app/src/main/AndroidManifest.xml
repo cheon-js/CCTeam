@@ -32,6 +32,7 @@
         <activity android:name=".ChatProfile"/>
         <activity android:name=".CarpoolboardActivity"/>
         <activity android:name=".CarpoolMapActivity"/>
+        <activity android:name=".DealWriteActivity"/>
     </application>
 
 </manifest>

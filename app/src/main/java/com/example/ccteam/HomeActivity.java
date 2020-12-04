@@ -13,6 +13,7 @@ public class HomeActivity extends AppCompatActivity {
     Button boardList;
     Button chat;
     Button carpool;
+    Button deal;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -21,6 +22,16 @@ public class HomeActivity extends AppCompatActivity {
         boardList = findViewById(R.id.btnFreeboard);
         carpool = findViewById(R.id.btntaxi);
         chat = findViewById(R.id.btnQnA);
+        deal = findViewById(R.id.btnDeal);
+
+
+        deal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),DealWriteActivity.class);
+                startActivity(intent);
+            }
+        });
 
         boardList.setOnClickListener(new View.OnClickListener() {
             @Override
