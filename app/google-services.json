@@ -36,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "917504010440-8uirqum1r1h5tsnbb7kqrr7epetch66d.apps.googleusercontent.com",
+              "client_id": "917504010440-3ect3qd4irmrt4ds16q8u6rf9kkgjrqa.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -52,6 +52,46 @@
       },
       "oauth_client": [
         {
+          "client_id": "917504010440-fqta9pa3glcm3cip9mmgl5paha4lhul2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ccteam",
+            "certificate_hash": "06053034a008ffb451cc20edcd376d40c72f6e08"
+          }
+        },
+        {
+          "client_id": "917504010440-megcosmnvue4s536dou9l2ms6jd0nn5v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ccteam",
+            "certificate_hash": "8d04e0ae3b0946291322ec3c793ddbccd02079dd"
+          }
+        },
+        {
+          "client_id": "917504010440-qote3rkud8j33bgmdo1kl1v866urac53.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ccteam",
+            "certificate_hash": "784a41d446dcd16cc1cb4f75995d92c71d6cd3a0"
+          }
+        },
+        {
+          "client_id": "917504010440-umptv0gfuukll536dbuv839hgidrnm07.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ccteam",
+            "certificate_hash": "2b3a336b1fed15e22405fb25bf46b3b220576731"
+          }
+        },
+        {
+          "client_id": "917504010440-v3n6itaeeh3kk7vcqlulaiqqbhpgfrmo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ccteam",
+            "certificate_hash": "9842caa425fc74877c8d49285dac36fb3ab67238"
+          }
+        },
+        {
           "client_id": "917504010440-8uirqum1r1h5tsnbb7kqrr7epetch66d.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -65,7 +105,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "917504010440-8uirqum1r1h5tsnbb7kqrr7epetch66d.apps.googleusercontent.com",
+              "client_id": "917504010440-3ect3qd4irmrt4ds16q8u6rf9kkgjrqa.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

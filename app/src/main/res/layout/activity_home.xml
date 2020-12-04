@@ -29,117 +29,133 @@
             android:background="#000000" />
 
         <LinearLayout
-            android:id="@+id/Flayout"
             android:layout_width="match_parent"
-            android:layout_height="165dp"
-            android:layout_above="@+id/slayout"
-            android:orientation="horizontal">
+            android:layout_height="153dp">
+            android:orientation="horizonal"
 
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnMainNotice"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="#fff"
-                android:scaleType="fitXY"
-                android:src="@drawable/notice" />
+                android:background="@layout/btn_bg"
+                android:drawableLeft="@drawable/notice"
+                android:drawablePadding="18dip"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="18dip"
+                android:text="공지사항"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnFreeboard"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="#fff"
-                android:scaleType="fitXY"
-                android:src="@drawable/freeboard" />
-
+                android:background="@layout/btn_bg"
+                android:drawableLeft="@drawable/freeboard"
+                android:drawablePadding="10dip"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="18dip"
+                android:text="자유게시판"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/slayout"
             android:layout_width="match_parent"
-            android:layout_height="154dp"
-            android:layout_above="@+id/tlayout"
-            android:orientation="horizontal">
+            android:layout_height="153dp">
+            android:orientation="horizonal"
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnQnA"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="#fff"
-                android:scaleType="fitXY"
-                android:src="@drawable/qna" />
+                android:background="@layout/btn_bg"
+                android:drawableLeft="@drawable/qna"
+                android:drawablePadding="10dip"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="18dip"
+                android:text="질문게시판"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnDeal"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="#fff"
-                android:scaleType="fitXY"
-                android:src="@drawable/deal" />
+                android:background="@layout/btn_bg"
+                android:drawableLeft="@drawable/deal"
+                android:drawablePadding="10dip"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="18dip"
+                android:text="거래게시판"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/tlayout"
             android:layout_width="match_parent"
-            android:layout_height="144dp"
-            android:layout_above="@+id/flayout"
-            android:orientation="horizontal">
+            android:layout_height="153dp">
+            android:orientation="horizonal"
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnPopular"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="#fff"
-                android:scaleType="fitXY"
-                android:src="@drawable/popular" />
+                android:background="@layout/btn_bg"
+                android:drawableLeft="@drawable/popular"
+                android:drawablePadding="10dip"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="18dip"
+                android:text="질문게시판"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
 
-            <ImageButton
-                android:id="@+id/imageButton6"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btntaxi"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="#fff"
-                android:scaleType="fitXY"
-                android:src="@drawable/intro" />
-
+                android:background="@layout/btn_bg"
+                android:drawableLeft="@drawable/taxi"
+                android:drawablePadding="10dip"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="18dip"
+                android:text="카풀게시판"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/flayout"
             android:layout_width="match_parent"
-            android:layout_height="153dp"
-            android:orientation="horizontal">
+            android:layout_height="153dp">
+            android:orientation="horizonal"
 
-            <ImageButton
-                android:id="@+id/imageButton7"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnMywrite"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="#fff"
-                android:scaleType="fitXY"
-                android:src="@drawable/write" />
+                android:background="@layout/btn_bg"
+                android:drawableLeft="@drawable/mywrite"
+                android:drawablePadding="10dip"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="18dip"
+                android:text="내가 쓴 글"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
 
-            <ImageButton
-                android:id="@+id/imageButton8"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnMycomment"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="#fff"
-                android:scaleType="fitXY"
-                android:src="@drawable/comment" />
-
+                android:background="@layout/btn_bg"
+                android:drawableLeft="@drawable/mycomment"
+                android:drawablePadding="10dip"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="18dip"
+                android:text="내가 쓴 댓글"
+                android:textColor="#ffffff"
+                android:textSize="50px" />
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

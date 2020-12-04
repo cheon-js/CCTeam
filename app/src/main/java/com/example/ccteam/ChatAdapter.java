@@ -1,14 +1,11 @@
 package com.example.ccteam;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -57,15 +54,13 @@ public class ChatAdapter extends BaseAdapter {
         ImageView iv= itemView.findViewById(R.id.iv);
         TextView tvName= itemView.findViewById(R.id.tv_name);
         TextView tvMsg= itemView.findViewById(R.id.tv_msg);
-
-
         TextView tvTime= itemView.findViewById(R.id.tv_time);
 
         tvName.setText(item.getName());
         tvMsg.setText(item.getMessage());
         tvTime.setText(item.getTime());
 
-        Glide.with(itemView).load(item.getPofileUrl()).into(iv);
+        //Glide.with(itemView).load(item.getPofileUrl()).into(iv);
 
         return itemView;
     }

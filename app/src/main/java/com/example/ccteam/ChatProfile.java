@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -90,7 +89,7 @@ public class ChatProfile extends AppCompatActivity {
             case 10:
                 if(resultCode==RESULT_OK){
                     personPhoto = data.getData();
-                    //Glide.with(this).load(personPhoto).into(ivProfile);
+                    //Glide.with(this).load(imgUri).into(ivProfile);
                     //Glide는 이미지를 읽어와서 보여줄때 내 device의 외장메모리에 접근하는 퍼미션이 요구됨.
                     //(퍼미션이 없으면 이미지가 보이지 않음.)
                     //Glide를 사용할 때는 동적 퍼미션 필요함.
@@ -106,7 +105,7 @@ public class ChatProfile extends AppCompatActivity {
         G.nickName= etName.getText().toString();
 
         //이미지를 선택하지 않았을 수도 있으므로
-        if(personPhoto==null) return;//프로필을 아무것도 선택하지않았으면 파일 업로드할때 에러?
+        if(personPhoto==null) return;
 
         //Firebase storage에 이미지 저장하기 위해 파일명 만들기(날짜를 기반으로)
         SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMddhhmmss"); //20191024111224
@@ -123,8 +122,6 @@ public class ChatProfile extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 //이미지 업로드가 성공되었으므로...
                 //곧바로 firebase storage의 이미지 파일 다운로드 URL을 얻어오기
-                /*FirebaseStorage storage = FirebaseStorage.getInstance("gs://mteam-428e6.appspot.com/profileImages ");
-                StorageReference storageRef = storage.getReference();*/
                 imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -142,9 +139,8 @@ public class ChatProfile extends AppCompatActivity {
                         //닉네임을 key 식별자로 하고 프로필 이미지의 주소를 값으로 저장
                         profileRef.child(G.nickName).setValue(G.porfileUrl);
 
-                        /*
                         //2. 내 phone에 nickName, profileUrl을 저장
-                        SharedPreferences preferences= getSharedPreferences("account",MODE_PRIVATE);
+                        /*SharedPreferences preferences= getSharedPreferences("account",MODE_PRIVATE);
                         SharedPreferences.Editor editor=preferences.edit();
 
                         editor.putString("nickName",G.nickName);
@@ -165,5 +161,7 @@ public class ChatProfile extends AppCompatActivity {
         SharedPreferences preferences=getSharedPreferences("account",MODE_PRIVATE);
         G.nickName=preferences.getString("nickName", null);
         G.porfileUrl=preferences.getString("profileUrl", null);
+
+
     }
 }
