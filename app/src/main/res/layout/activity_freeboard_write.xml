@@ -15,13 +15,27 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="157dp" />
 
+    <ImageView
+        android:id="@+id/board_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:text="사진"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <EditText
         android:id="@+id/board_content"
         android:layout_width="match_parent"
-        android:layout_height="633dp"
+        android:layout_height="462dp"
         android:hint="내용"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="200dp" />
+
+    <Button
+        android:id="@+id/input_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="사진 추가" />
 
     <Button
         android:id="@+id/input_button"
@@ -30,4 +44,5 @@
         android:text="등록"
         tools:layout_editor_absoluteX="155dp"
         tools:layout_editor_absoluteY="419dp" />
+
 </LinearLayout>

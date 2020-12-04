@@ -1,11 +1,14 @@
 package com.example.ccteam;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -14,15 +17,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class FreeboardWriteActivity extends AppCompatActivity {
-    Button input;
+    Button input,inputimage;
     EditText title, content;
+    ImageView ivboard;
     String input_title, input_content;
+    Uri Photo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,8 @@ public class FreeboardWriteActivity extends AppCompatActivity {
         DatabaseReference user = database.getReference("User");
 
         input = findViewById(R.id.input_button);
+        ivboard = findViewById(R.id.board_iv);
+        inputimage = findViewById(R.id.input_image);
         title = findViewById(R.id.board_title);
         content = findViewById(R.id.board_content);
 
@@ -54,5 +56,26 @@ public class FreeboardWriteActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        inputimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent,20);
+            }
+        });
         }
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+
+            case 20:
+                if(resultCode==RESULT_OK){
+                    Photo = data.getData();
+                    Picasso.get().load(Photo).into(ivboard);
+                }
+                break;
+        }
+    }
     }
