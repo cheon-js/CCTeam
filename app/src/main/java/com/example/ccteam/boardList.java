@@ -10,7 +10,6 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +30,7 @@ public class boardList extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     List<Object> Array = new ArrayList<Object>();
 
-    FloatingActionButton writebtn;
+    Button writebtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class boardList extends AppCompatActivity {
         });
 
         //작성버튼 누르면 게시글 올리는 곳으로 이동.
-        writebtn = findViewById(R.id.fabwrite);
+        writebtn = findViewById(R.id.button3);
         writebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

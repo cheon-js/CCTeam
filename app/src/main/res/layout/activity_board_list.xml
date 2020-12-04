@@ -22,19 +22,19 @@
        android:background="#fff"
        android:layout_above="@+id/button3"/>
 
+   <Button
+       android:id="@+id/button3"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="게시글 작성"
+       android:textSize="20dp"/>
+
+
+
    <ListView
        android:id="@+id/list_view"
        android:layout_width="match_parent"
-       android:layout_height="591dp" />
-
-   <com.google.android.material.floatingactionbutton.FloatingActionButton
-       android:id="@+id/fabwrite"
-       android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_gravity="end|bottom"
-       android:layout_margin="16dp"
-       android:clickable="true"
-       app:srcCompat="@drawable/pen" />
-
+       />
 
 </LinearLayout>
