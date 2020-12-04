@@ -106,7 +106,7 @@
                 android:drawablePadding="10dip"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="18dip"
-                android:text="질문게시판"
+                android:text="인기게시판"
                 android:textColor="#ffffff"
                 android:textSize="50px" />
 
