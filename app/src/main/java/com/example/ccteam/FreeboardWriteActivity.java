@@ -56,34 +56,26 @@ public class FreeboardWriteActivity extends AppCompatActivity {
 
         String boradId = "Board_" + System.currentTimeMillis();
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+        input_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent,20);
+            }
+        });
+
         input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(isChanged==true){
-                    SimpleDateFormat image= new SimpleDateFormat(boradId);
-                    String fileName= image.format(new Date())+".png";
-
-                    FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
-                    final StorageReference imgRef= firebaseStorage.getReference("boardimage/"+fileName);
-                    UploadTask uploadTask=imgRef.putFile(board_iv);
-
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    G.boardUrl = uri.toString();
-                                    listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                                    listboard.child(boradId).child("Title").setValue(title.getText().toString());
-                                    listboard.child(boradId).child("Content").setValue(content.getText().toString());
-                                    listboard.child(boradId).child("Image").setValue(G.boardUrl);
-                                }
-
-                            });
-                        }
-                    });
-                }else{
+                    listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    listboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    listboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    listboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
+                }
+                else{
                     listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
                     listboard.child(boradId).child("Title").setValue(title.getText().toString());
                     listboard.child(boradId).child("Content").setValue(content.getText().toString());
@@ -95,15 +87,6 @@ public class FreeboardWriteActivity extends AppCompatActivity {
             }
         });
 
-        input_iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent,20);
-                isChanged = true;
-            }
-        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
@@ -113,8 +96,33 @@ public class FreeboardWriteActivity extends AppCompatActivity {
                 if(resultCode==RESULT_OK){
                     board_iv = data.getData();
                     Picasso.get().load(board_iv).into(image_iv);
+                    inputUrl();
                 }
                 break;
         }
+    }
+    void inputUrl(){
+        FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+
+        SimpleDateFormat image= new SimpleDateFormat(""+System.currentTimeMillis());
+        String fileName= image.format(new Date())+".png";
+
+        final StorageReference img= firebaseStorage.getReference("boardImage/"+fileName);
+
+        UploadTask uploadTask=img.putFile(board_iv);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                img.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        G.boardUrl = uri.toString();
+                        //Toast.makeText(getApplicationContext(),"사진업로드 완료",Toast.LENGTH_SHORT).show();
+                        isChanged=true;
+                    }
+                });
+            }
+        });
+
     }
 }
