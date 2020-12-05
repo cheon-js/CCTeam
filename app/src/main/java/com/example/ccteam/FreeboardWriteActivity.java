@@ -56,8 +56,11 @@ public class FreeboardWriteActivity extends AppCompatActivity {
         content.getText().toString();
 
 
+
         String boradId = "Board_" + System.currentTimeMillis();
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+        String nameuser = signInAccount.getDisplayName();
 
         input_iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,15 +76,15 @@ public class FreeboardWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isChanged==true){
-                    board1 = new Board(title.getText().toString(), content.getText().toString(),signInAccount.getDisplayName(),G.boardUrl);
+                    board1 = new Board(title.getText().toString(), content.getText().toString(), signInAccount.getDisplayName(),G.boardUrl);
                     postfreeboard.child(boradId).setValue(board1);
-                    userboard.child(boradId).setValue(board1);
+                    userboard.child(nameuser).child(boradId).setValue(board1);
 
                 }
                 else{
                     board1 = new Board(title.getText().toString(), content.getText().toString(),signInAccount.getDisplayName(),G.boardUrl);
                     postfreeboard.child(boradId).setValue(board1);
-                    userboard.child(boradId).setValue(board1);
+                    userboard.child(nameuser).child(boradId).setValue(board1);
                 }
 
                 Intent intent = new Intent(getApplicationContext(),boardList.class);
