@@ -249,15 +249,11 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     LocationCallback locationCallback = new LocationCallback() {
-        private LatLng startLatLng = new LatLng(0, 0);        //polyline 시작점
-        private LatLng endLatLng = new LatLng(0, 0);        //polyline 끝점
+    //    private LatLng currentLatLng = new LatLng(0, 0);        //polyline 시작점
+     //   private LatLng newLatLng = new LatLng(0, 0);        //polyline 끝점
         List<Polyline>polylines;
 
-        private void drawPath() {
-            PolylineOptions options = new PolylineOptions().add(startLatLng).add(endLatLng).width(15).color(Color.BLACK).geodesic(true);
-            polylines.add(mMap.addPolyline(options));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLatLng, 18));
-        }
+
 
 
         @Override
@@ -265,6 +261,7 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
             super.onLocationResult(locationResult);
 
             List<Location> locationList = locationResult.getLocations();
+
 
             if (locationList.size() > 0) {
                 location = locationList.get(locationList.size() - 1);
@@ -276,17 +273,26 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
 
                 if (previousPosition == null) previousPosition = currentPosition;
 
+
+
                 if ( (addedMarker != null) && tracking == 1 ) {
                     double radius = 500; // 500m distance.
 
                     double distance = SphericalUtil.computeDistanceBetween(currentPosition, addedMarker.getPosition());
 
+
+
                     if ((distance < radius) && (!previousPosition.equals(currentPosition))) {
-                        drawPath();
+
+                        PolylineOptions options = new PolylineOptions().add(previousPosition).add(currentPosition).width(15).color(Color.RED).geodesic(true);
+                        polylines.add(mMap.addPolyline(options));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(previousPosition, 18));
+
                         Toast.makeText(CarpoolMapActivity.this, addedMarker.getTitle() + "까지" + (int) distance + "m 남음", Toast.LENGTH_LONG).show();
 
                     }
                 }
+
 
 
 
