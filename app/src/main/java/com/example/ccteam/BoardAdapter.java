@@ -1,6 +1,7 @@
 package com.example.ccteam;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,15 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_content.setText(arrayList.get(position).getContent());
         holder.tv_username.setText(arrayList.get(position).getUsername());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener(
+        ) {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Comment.class);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -62,5 +72,8 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
             this.tv_content = itemView.findViewById(R.id.tv_content);
             this.tv_username = itemView.findViewById(R.id.tv_username);
         }
+
+
+
     }
 }

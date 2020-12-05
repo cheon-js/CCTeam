@@ -3,8 +3,8 @@
     package="com.example.ccteam">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,10 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".MyPage"></activity>
+        <activity android:name=".Comment" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDu6gDITryV3WUozc8O5vjw0greMBLA7YM"/>
+            android:value="AIzaSyDu6gDITryV3WUozc8O5vjw0greMBLA7YM" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,13 +30,14 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".FreeboardWriteActivity" />
-        <activity android:name=".boardList"/>
-        <activity android:name=".ChatActivity"/>
-        <activity android:name=".ChatProfile"/>
-        <activity android:name=".CarpoolboardActivity"/>
-        <activity android:name=".CarpoolMapActivity"/>
-        <activity android:name=".DealWriteActivity"/>
-        <activity android:name=".DealListActivity"/>
+        <activity android:name=".boardList" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".ChatProfile" />
+        <activity android:name=".CarpoolboardActivity" />
+        <activity android:name=".CarpoolMapActivity" />
+        <activity android:name=".DealWriteActivity" />
+        <activity android:name=".DealListActivity" />
+
     </application>
 
 </manifest>
