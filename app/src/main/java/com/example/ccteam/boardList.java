@@ -55,6 +55,7 @@ public class boardList extends AppCompatActivity {
                 arrayList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     Board board = dataSnapshot.getValue(Board.class);
                     arrayList.add(board);
                 }

@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -48,7 +50,13 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         ) {
             @Override
             public void onClick(View v) {
+                FirebaseDatabase database;
+                DatabaseReference databaseReference;
                 Intent intent = new Intent(v.getContext(), Comment.class);
+                intent.putExtra("Title_data", arrayList.get(position).getTitle());
+                intent.putExtra("Content_data",arrayList.get(position).getContent());
+                intent.putExtra("name", arrayList.get(position).getUsername());
+                intent.putExtra("imageURl", arrayList.get(position).getProfile());
                 v.getContext().startActivity(intent);
             }
         });
