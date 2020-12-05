@@ -42,7 +42,8 @@ public class FreeboardWriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_freeboard_write);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference listboard = database.getReference("boardlist");
+        DatabaseReference userboard = database.getReference("userfreeboard");
+        DatabaseReference postfreeboard = database.getReference("postfreelist");
 
         input = findViewById(R.id.input_button);
         title = findViewById(R.id.board_title);
@@ -71,15 +72,28 @@ public class FreeboardWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isChanged==true){
-                    listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    listboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    listboard.child(boradId).child("Content").setValue(content.getText().toString());
-                    listboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
+                    postfreeboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    postfreeboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    postfreeboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    postfreeboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
+                    postfreeboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
+
+                    userboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    userboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    userboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    userboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
+                    userboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
                 }
                 else{
-                    listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    listboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    listboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    postfreeboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    postfreeboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    postfreeboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    postfreeboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
+
+                    userboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    userboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    userboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    userboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
                 }
 
                 Intent intent = new Intent(getApplicationContext(),boardList.class);

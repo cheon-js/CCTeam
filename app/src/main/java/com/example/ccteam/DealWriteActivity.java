@@ -38,7 +38,8 @@ public class DealWriteActivity extends AppCompatActivity {
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dealboard = database.getReference("deallist");
+        DatabaseReference userboard = database.getReference("userdealboard");
+        DatabaseReference postdelboard = database.getReference("postdellost");
 
         input = findViewById(R.id.input_button);
         title = findViewById(R.id.board_title);
@@ -64,6 +65,45 @@ public class DealWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isChanged==true){
+                    postdelboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    postdelboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    postdelboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    postdelboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
+                    postdelboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
+
+                    userboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    userboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    userboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    userboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
+                    userboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
+                }
+                else{
+                    postdelboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    postdelboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    postdelboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    postdelboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
+
+                    userboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    userboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    userboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    userboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
+                }
+
+
+                Intent intent = new Intent(getApplicationContext(),boardList.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 20:
+                if(resultCode==RESULT_OK){
+                    board_iv = data.getData();
+                    Picasso.get().load(board_iv).into(image_iv);
+                    isChanged=true;
                     FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
 
                     SimpleDateFormat image= new SimpleDateFormat(""+System.currentTimeMillis());
@@ -84,32 +124,6 @@ public class DealWriteActivity extends AppCompatActivity {
                             });
                         }
                     });
-                    dealboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    dealboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    dealboard.child(boradId).child("Content").setValue(content.getText().toString());
-                    dealboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
-                }
-                else{
-                    dealboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    dealboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    dealboard.child(boradId).child("Content").setValue(content.getText().toString());
-                }
-
-
-                Intent intent = new Intent(getApplicationContext(),boardList.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case 20:
-                if(resultCode==RESULT_OK){
-                    board_iv = data.getData();
-                    Picasso.get().load(board_iv).into(image_iv);
-                    isChanged=true;
                 }
                 break;
         }
