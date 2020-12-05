@@ -71,6 +71,32 @@ public class FreeboardWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isChanged==true){
+                    listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    listboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    listboard.child(boradId).child("Content").setValue(content.getText().toString());
+                    listboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
+                }
+                else{
+                    listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
+                    listboard.child(boradId).child("Title").setValue(title.getText().toString());
+                    listboard.child(boradId).child("Content").setValue(content.getText().toString());
+                }
+
+                Intent intent = new Intent(getApplicationContext(),boardList.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 20:
+                if(resultCode==RESULT_OK){
+                    board_iv = data.getData();
+                    Picasso.get().load(board_iv).into(image_iv);
+
                     FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
 
                     SimpleDateFormat image= new SimpleDateFormat(""+System.currentTimeMillis());
@@ -91,34 +117,6 @@ public class FreeboardWriteActivity extends AppCompatActivity {
                             });
                         }
                     });
-                    listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    listboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    listboard.child(boradId).child("Content").setValue(content.getText().toString());
-                    listboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
-                }
-                    else{
-                        listboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                        listboard.child(boradId).child("Title").setValue(title.getText().toString());
-                        listboard.child(boradId).child("Content").setValue(content.getText().toString());
-                }
-
-
-
-
-                Intent intent = new Intent(getApplicationContext(),boardList.class);
-                startActivity(intent);
-            }
-        });
-
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case 20:
-                if(resultCode==RESULT_OK){
-                    board_iv = data.getData();
-                    Picasso.get().load(board_iv).into(image_iv);
                 }
                 break;
         }

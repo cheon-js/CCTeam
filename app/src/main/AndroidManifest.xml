@@ -33,6 +33,7 @@
         <activity android:name=".CarpoolboardActivity"/>
         <activity android:name=".CarpoolMapActivity"/>
         <activity android:name=".DealWriteActivity"/>
+        <activity android:name=".DealListActivity"/>
     </application>
 
 </manifest>

@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         deal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),DealWriteActivity.class);
+                Intent intent = new Intent(getApplicationContext(),DealListActivity.class);
                 startActivity(intent);
             }
         });
