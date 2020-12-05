@@ -31,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         freeboard = findViewById(R.id.btnFreeboard);
         qna = findViewById(R.id.btnQnA);
         deal = findViewById(R.id.btnDeal);
-        best = findViewById(R.id.btnbest);
+       // best = findViewById(R.id.btnbest);
         carpool = findViewById(R.id.btntaxi);
         mywrite = findViewById(R.id.btnMywrite);
         mycomment = findViewById(R.id.btnMycomment);
@@ -71,12 +71,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        best.setOnClickListener(new View.OnClickListener() {
+        /*best.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });
+        });*/
 
         carpool.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,13 +109,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        article.setOnClickListener(new View.OnClickListener() {
+        /*article.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ContentsActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         //******************************************************************************************
 
     }

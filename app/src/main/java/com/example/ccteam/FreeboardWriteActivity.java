@@ -36,6 +36,7 @@ public class FreeboardWriteActivity extends AppCompatActivity {
     ImageView image_iv;
     Uri board_iv;
     boolean isChanged= false;
+    Board board1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,28 +73,15 @@ public class FreeboardWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(isChanged==true){
-                    postfreeboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    postfreeboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    postfreeboard.child(boradId).child("Content").setValue(content.getText().toString());
-                    postfreeboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
-                    postfreeboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
+                    board1 = new Board(title.getText().toString(), content.getText().toString(),signInAccount.getDisplayName(),G.boardUrl);
+                    postfreeboard.child(boradId).setValue(board1);
+                    userboard.child(boradId).setValue(board1);
 
-                    userboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    userboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    userboard.child(boradId).child("Content").setValue(content.getText().toString());
-                    userboard.child(boradId).child("ImageUrl").setValue(G.boardUrl);
-                    userboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
                 }
                 else{
-                    postfreeboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    postfreeboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    postfreeboard.child(boradId).child("Content").setValue(content.getText().toString());
-                    postfreeboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
-
-                    userboard.child(boradId).child("name").setValue(signInAccount.getDisplayName());
-                    userboard.child(boradId).child("Title").setValue(title.getText().toString());
-                    userboard.child(boradId).child("Content").setValue(content.getText().toString());
-                    userboard.child(boradId).child("Email").setValue(signInAccount.getEmail().toString());
+                    board1 = new Board(title.getText().toString(), content.getText().toString(),signInAccount.getDisplayName(),G.boardUrl);
+                    postfreeboard.child(boradId).setValue(board1);
+                    userboard.child(boradId).setValue(board1);
                 }
 
                 Intent intent = new Intent(getApplicationContext(),boardList.class);

@@ -1,27 +1,51 @@
 package com.example.ccteam;
 
 public class Board {
+    public String profile;
     public String title;
     public String content;
+    public String username;
+
+
 
     public Board(){}
 
-    public Board(String title, String content){
-
+    public Board(String title, String content, String username ,String profile){
         this.title = title;
+        this.content = content;
+        this.username = username;
+        this.profile = profile;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
         this.content = content;
     }
 
-    public String getTitle(){
-        return this.title;
+    public String getTitle() {
+        return title;
     }
-    public  void setTitle(){
-        this.title = title;
+
+    public String getContent() {
+        return content;
     }
-    public String getContent(){
-        return this.content;
+
+    public String getUsername() {
+        return username;
     }
-    public void setContent(){
-        this.content = content;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
