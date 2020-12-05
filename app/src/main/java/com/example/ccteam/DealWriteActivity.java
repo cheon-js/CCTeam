@@ -40,11 +40,11 @@ public class DealWriteActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_freeboard_write);
+        setContentView(R.layout.activity_deal_write);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userboard = database.getReference("userfreeboard");
-        DatabaseReference postfreeboard = database.getReference("Dealpostfreelist");
+        DatabaseReference postdealboard = database.getReference("Dealpostfreelist");
 
         input = findViewById(R.id.input_button);
         title = findViewById(R.id.board_title);
@@ -77,17 +77,17 @@ public class DealWriteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isChanged==true){
                     board1 = new Board(title.getText().toString(), content.getText().toString(), signInAccount.getDisplayName(),G.boardUrl);
-                    postfreeboard.child(boradId).setValue(board1);
+                    postdealboard.child(boradId).setValue(board1);
                     userboard.child(nameuser).child(boradId).setValue(board1);
 
                 }
                 else{
                     board1 = new Board(title.getText().toString(), content.getText().toString(),signInAccount.getDisplayName(),G.boardUrl);
-                    postfreeboard.child(boradId).setValue(board1);
+                    postdealboard.child(boradId).setValue(board1);
                     userboard.child(nameuser).child(boradId).setValue(board1);
                 }
 
-                Intent intent = new Intent(getApplicationContext(),boardList.class);
+                Intent intent = new Intent(getApplicationContext(),DealListActivity.class);
                 startActivity(intent);
             }
         });

@@ -39,7 +39,7 @@ public class DealListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board_list);
+        setContentView(R.layout.activity_deal_list);
 
         recyclerView = findViewById(R.id.recyclerView); // 아디 연결
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
@@ -76,7 +76,7 @@ public class DealListActivity extends AppCompatActivity {
         writebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),FreeboardWriteActivity.class);
+                Intent intent = new Intent(getApplicationContext(),DealWriteActivity.class);
                 startActivity(intent);
             }
         });
