@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -39,6 +40,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.maps.android.SphericalUtil;
 
@@ -116,17 +119,21 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
 
         final Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-
                 tracking = 1 - tracking;
 
                 if ( tracking == 1){
                     button.setText("중지");
+
                 }
                 else button.setText("거리계산");
             }
+
+
         });
+
 
     }
 
@@ -169,6 +176,8 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
                         addedMarker = mMap.addMarker(markerOptions);
 
                         dialog.dismiss();
+
+
                     }
                 });
 
@@ -228,9 +237,7 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
 
 
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-        // 현재 오동작을 해서 주석처리
 
-        //mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
@@ -242,6 +249,17 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
     }
 
     LocationCallback locationCallback = new LocationCallback() {
+        private LatLng startLatLng = new LatLng(0, 0);        //polyline 시작점
+        private LatLng endLatLng = new LatLng(0, 0);        //polyline 끝점
+        List<Polyline>polylines;
+
+        private void drawPath() {
+            PolylineOptions options = new PolylineOptions().add(startLatLng).add(endLatLng).width(15).color(Color.BLACK).geodesic(true);
+            polylines.add(mMap.addPolyline(options));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startLatLng, 18));
+        }
+
+
         @Override
         public void onLocationResult(LocationResult locationResult) {
             super.onLocationResult(locationResult);
@@ -264,10 +282,13 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
                     double distance = SphericalUtil.computeDistanceBetween(currentPosition, addedMarker.getPosition());
 
                     if ((distance < radius) && (!previousPosition.equals(currentPosition))) {
-
+                        drawPath();
                         Toast.makeText(CarpoolMapActivity.this, addedMarker.getTitle() + "까지" + (int) distance + "m 남음", Toast.LENGTH_LONG).show();
+
                     }
                 }
+
+
 
                 String markerTitle = getCurrentAddress(currentPosition);
                 String markerSnippet = "위도:" + String.valueOf(location.getLatitude())
@@ -280,6 +301,7 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
                 setCurrentLocation(location, markerTitle, markerSnippet);
 
                 mCurrentLocatiion = location;
+
             }
 
 
