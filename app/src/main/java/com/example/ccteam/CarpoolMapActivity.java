@@ -284,12 +284,12 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
 
                     if ((distance < radius) && (!previousPosition.equals(currentPosition))) {
 
+
+
+                        Toast.makeText(CarpoolMapActivity.this, addedMarker.getTitle() + "까지" + (int) distance + "m 남음", Toast.LENGTH_LONG).show();
                         PolylineOptions options = new PolylineOptions().add(previousPosition).add(currentPosition).width(15).color(Color.RED).geodesic(true);
                         polylines.add(mMap.addPolyline(options));
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(previousPosition, 18));
-
-                        Toast.makeText(CarpoolMapActivity.this, addedMarker.getTitle() + "까지" + (int) distance + "m 남음", Toast.LENGTH_LONG).show();
-
                     }
                 }
 
