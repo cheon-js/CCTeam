@@ -11,8 +11,11 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +40,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.maps.android.SphericalUtil;
 
 import java.io.IOException;
 import java.util.List;
@@ -67,6 +71,10 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
     Location mCurrentLocatiion;
     LatLng currentPosition;
 
+    /* 현재위치 목적지 */
+    LatLng previousPosition = null;
+    Marker addedMarker = null;
+    int tracking = 0;
 
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest locationRequest;
@@ -105,6 +113,21 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        final Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                tracking = 1 - tracking;
+
+                if ( tracking == 1){
+                    button.setText("Stop");
+                }
+                else button.setText("Start");
+            }
+        });
+
     }
 
     @Override
@@ -113,11 +136,50 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
 
         mMap = googleMap;
 
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener(){
+
+            @Override
+            public void onMapLongClick(final LatLng latLng) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(CarpoolMapActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View view = inflater.inflate(R.layout.activity_capool_map_info, null);
+                builder.setView(view);
+                final Button button_submit = (Button) view.findViewById(R.id.button_carpool_map_info);
+                final EditText editText_placeTitle = (EditText) view.findViewById(R.id.editText_carpool_mapTitle);
+                final EditText editText_placeDesc = (EditText) view.findViewById(R.id.editText_carpool_mapDesc);
+
+                final AlertDialog dialog = builder.create();
+                button_submit.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        String string_placeTitle = editText_placeTitle.getText().toString();
+                        String string_placeDesc = editText_placeDesc.getText().toString();
+                        Toast.makeText(CarpoolMapActivity.this, string_placeTitle+"\n"+string_placeDesc,Toast.LENGTH_SHORT).show();
+
+
+                        //맵을 클릭시 현재 위치에 마커 추가
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        markerOptions.position(latLng);
+                        markerOptions.title(string_placeTitle);
+                        markerOptions.snippet(string_placeDesc);
+                        markerOptions.draggable(true);
+                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+                        if ( addedMarker != null ) mMap.clear();
+                        addedMarker = mMap.addMarker(markerOptions);
+
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
         //런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
         //지도의 초기위치를 서울로 이동
         setDefaultLocation();
-
-
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크
@@ -125,7 +187,6 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
                 Manifest.permission.ACCESS_FINE_LOCATION);
         int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION);
-
 
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
@@ -189,11 +250,24 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
 
             if (locationList.size() > 0) {
                 location = locationList.get(locationList.size() - 1);
-                //location = locationList.get(0);
 
-                currentPosition
-                        = new LatLng(location.getLatitude(), location.getLongitude());
+                previousPosition = currentPosition;
 
+                currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
+
+
+                if (previousPosition == null) previousPosition = currentPosition;
+
+                if ( (addedMarker != null) && tracking == 1 ) {
+                    double radius = 500; // 500m distance.
+
+                    double distance = SphericalUtil.computeDistanceBetween(currentPosition, addedMarker.getPosition());
+
+                    if ((distance < radius) && (!previousPosition.equals(currentPosition))) {
+
+                        Toast.makeText(CarpoolMapActivity.this, addedMarker.getTitle() + "까지" + (int) distance + "m 남음", Toast.LENGTH_LONG).show();
+                    }
+                }
 
                 String markerTitle = getCurrentAddress(currentPosition);
                 String markerSnippet = "위도:" + String.valueOf(location.getLatitude())
@@ -353,7 +427,6 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
 
 
     public void setDefaultLocation() {
-
 
         //디폴트 위치, Seoul
         LatLng DEFAULT_LOCATION = new LatLng(37.56, 126.97);
