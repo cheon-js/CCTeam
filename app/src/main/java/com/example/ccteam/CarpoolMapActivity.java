@@ -122,9 +122,9 @@ public class CarpoolMapActivity extends AppCompatActivity implements OnMapReadyC
                 tracking = 1 - tracking;
 
                 if ( tracking == 1){
-                    button.setText("Stop");
+                    button.setText("중지");
                 }
-                else button.setText("Start");
+                else button.setText("거리계산");
             }
         });
 
