@@ -30,6 +30,7 @@ public class DealListActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
+    private ArrayList<String> mkeys=new ArrayList<>();
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -55,8 +56,10 @@ public class DealListActivity extends AppCompatActivity {
                 arrayList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String mkey = dataSnapshot.getKey();
                     Board board = dataSnapshot.getValue(Board.class);
                     arrayList.add(board);
+                    mkeys.add(mkey);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -69,7 +72,7 @@ public class DealListActivity extends AppCompatActivity {
             }
         });
 
-        adapter = new BoardAdapter(arrayList, this);
+        adapter = new BoardAdapter(arrayList, mkeys,this);
         recyclerView.setAdapter(adapter);
 
         writebtn = findViewById(R.id.button3);

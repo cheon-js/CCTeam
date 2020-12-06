@@ -8,9 +8,11 @@ public class Board {
 
 
 
+
     public Board(){}
 
-    public Board(String title, String content, String username ,String profile){
+
+    public Board(String title, String content, String username , String profile){
         this.title = title;
         this.content = content;
         this.username = username;
@@ -48,4 +50,6 @@ public class Board {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
 }

@@ -30,6 +30,7 @@ public class boardList extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Board> arrayList;
+    private ArrayList<String> mkeys = new ArrayList<>();
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -49,15 +50,64 @@ public class boardList extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("postfreelist");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Board value = snapshot.getValue(Board.class);
+                String key = snapshot.getKey();
+
+                if(previousChildName == null){
+                    arrayList.add(0,value);
+                    mkeys.add(0,key);
+                }else {
+                    int previousIndex = mkeys.indexOf(previousChildName);
+                    int nextIndex = previousIndex + 1;
+                    if (nextIndex == arrayList.size()) {
+                        arrayList.add(value);
+                        mkeys.add(key);
+                    } else {
+                        arrayList.add(nextIndex, value);
+                        mkeys.add(nextIndex, key);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+                /*.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayList.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
+                    String mkey = dataSnapshot.getKey();
                     Board board = dataSnapshot.getValue(Board.class);
                     arrayList.add(board);
+                    mkeys.add(mkey);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -68,9 +118,9 @@ public class boardList extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
-        adapter = new BoardAdapter(arrayList, this);
+        adapter = new BoardAdapter(arrayList, mkeys,this);
         recyclerView.setAdapter(adapter);
 
         writebtn = findViewById(R.id.button3);

@@ -19,19 +19,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHolder> {
-  private ArrayList<Board> arrayList;
-  private Context context;
+    private ArrayList<Board> arrayList;
+    private ArrayList<String> mkeys;
+    private Context context;
 
-    public BoardAdapter(ArrayList<Board> arrayList, Context context) {
+    public BoardAdapter(ArrayList<Board> arrayList,ArrayList<String> mkeys, Context context) {
         this.arrayList = arrayList;
         this.context = context;
+        this.mkeys = mkeys;
     }
 
     @NonNull
     @Override
     public BoardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.board_item,parent,false);
-       BoardViewHolder holder = new BoardViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.board_item,parent,false);
+        BoardViewHolder holder = new BoardViewHolder(view);
 
 
         return holder;
@@ -52,7 +54,9 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
             public void onClick(View v) {
                 FirebaseDatabase database;
                 DatabaseReference databaseReference;
+
                 Intent intent = new Intent(v.getContext(), Comment.class);
+                intent.putExtra("Key_data", mkeys.get(position));
                 intent.putExtra("Title_data", arrayList.get(position).getTitle());
                 intent.putExtra("Content_data",arrayList.get(position).getContent());
                 intent.putExtra("name", arrayList.get(position).getUsername());
