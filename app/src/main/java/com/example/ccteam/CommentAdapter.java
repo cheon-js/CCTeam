@@ -42,7 +42,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         Glide.with(holder.itemView)
                 .load(arrayList.get(position).getProfiles())
                 .into(holder.iv_profiles);
-        holder.tv_contents.setText(arrayList.get(position).getC_content());
+        holder.tv_contents.setText(arrayList.get(position).getContent());
         holder.tv_usernames.setText(arrayList.get(position).getName());
     }
 

@@ -58,7 +58,7 @@ public class Comment extends AppCompatActivity {
         String content_data = getIntent().getStringExtra("Content_data");
         String Uname = getIntent().getStringExtra("name");
         String URl = getIntent().getStringExtra("imageURl");
-        String Keydata = getIntent().getStringExtra("Key_data");
+        String key = getIntent().getStringExtra("Key_data");
 
         title = (TextView)findViewById(R.id.txttitle);
         content = (TextView)findViewById(R.id.txcontent);
@@ -89,12 +89,9 @@ public class Comment extends AppCompatActivity {
 
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
-        databaseReference = database.getReference(Keydata);
-        /*if(signInAccount != null){
-            tv_name.setText(signInAccount.getDisplayName());
-            String imageUrl = signInAccount.getPhotoUrl().toString();
-            Glide.with(this).load(imageUrl).into(iv_google);
-        }*/
+        databaseReference = database.getReference(key);
+
+
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -151,19 +148,17 @@ public class Comment extends AppCompatActivity {
 
     }
     public void clickSend(View view) {
-        String title_data = getIntent().getStringExtra("Title_data");
-        String content_data = getIntent().getStringExtra("Content_data");
-        String Uname = getIntent().getStringExtra("name");
-        String URl = getIntent().getStringExtra("imageURl");
         String key = getIntent().getStringExtra("Key_data");
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         String imageUrl = signInAccount.getPhotoUrl().toString();
         String contents = et2.getText().toString();
         DatabaseReference commentdata = database.getReference("postfreelist").child(key);
-        CommentItem commentItems = new CommentItem(title_data, content_data, signInAccount.getDisplayName(), contents, imageUrl);
+        DatabaseReference commentdata2 = database.getReference(key);
+        CommentItem commentItems = new CommentItem(contents, signInAccount.getDisplayName(), imageUrl);
         String commentId = "Comment_" + System.currentTimeMillis();
         commentdata.child(commentId).setValue(commentItems);
+        commentdata2.child(commentId).setValue(commentItems);
 
 
     }
