@@ -87,7 +87,7 @@
                 android:layout_marginTop="20dp"
                 tools:srcCompat="@tools:sample/backgrounds/scenic[0]" />
 
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listcomment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -107,7 +107,7 @@
         android:focusableInTouchMode="true">
 
         <EditText
-            android:id="@+id/et"
+            android:id="@+id/et2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
