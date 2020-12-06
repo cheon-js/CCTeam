@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".MyPage"></activity>
-        <activity android:name=".Comment" />
+        <activity
+            android:name=".Comment"
+            android:windowSoftInputMode="adjustPan"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
