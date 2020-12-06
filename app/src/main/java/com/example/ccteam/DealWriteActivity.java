@@ -75,17 +75,10 @@ public class DealWriteActivity extends AppCompatActivity {
         input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isChanged==true){
-                    board1 = new Board(title.getText().toString(), content.getText().toString(), signInAccount.getDisplayName(),G.boardUrl);
+                String ur = G.boardUrl;
+                    board1 = new Board(title.getText().toString(), content.getText().toString(), signInAccount.getDisplayName(),ur);
                     postdealboard.child(boradId).setValue(board1);
                     userboard.child(nameuser).child(boradId).setValue(board1);
-
-                }
-                else{
-                    board1 = new Board(title.getText().toString(), content.getText().toString(),signInAccount.getDisplayName(),G.boardUrl);
-                    postdealboard.child(boradId).setValue(board1);
-                    userboard.child(nameuser).child(boradId).setValue(board1);
-                }
 
                 Intent intent = new Intent(getApplicationContext(),DealListActivity.class);
                 startActivity(intent);

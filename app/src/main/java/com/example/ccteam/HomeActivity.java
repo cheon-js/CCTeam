@@ -74,7 +74,6 @@ public class HomeActivity extends AppCompatActivity {
         /*best.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });*/
 

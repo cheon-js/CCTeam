@@ -68,26 +68,19 @@ public class FreeboardWriteActivity extends AppCompatActivity {
                 Intent intent= new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent,20);
-                isChanged=true;
             }
         });
 
         input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isChanged==true){
-                    board1 = new Board(title.getText().toString(), content.getText().toString(), signInAccount.getDisplayName(),G.boardUrl);
+                    String ur = G.boardUrl;
+                    board1 = new Board(title.getText().toString(), content.getText().toString(),signInAccount.getDisplayName(),ur);
                     postfreeboard.child(boradId).setValue(board1);
                     userboard.child(nameuser).child(boradId).setValue(board1);
-
-                }
-                else{
-                    board1 = new Board(title.getText().toString(), content.getText().toString(),signInAccount.getDisplayName(),G.boardUrl);
-                    postfreeboard.child(boradId).setValue(board1);
-                    userboard.child(nameuser).child(boradId).setValue(board1);
-                }
 
                 Intent intent = new Intent(getApplicationContext(),boardList.class);
+
                 startActivity(intent);
             }
         });

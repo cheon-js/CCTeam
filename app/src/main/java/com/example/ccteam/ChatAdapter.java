@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class ChatAdapter extends BaseAdapter {
@@ -60,7 +62,7 @@ public class ChatAdapter extends BaseAdapter {
         tvMsg.setText(item.getMessage());
         tvTime.setText(item.getTime());
 
-        //Glide.with(itemView).load(item.getPofileUrl()).into(iv);
+        Glide.with(itemView).load(item.getPofileUrl()).into(iv);
 
         return itemView;
     }
